@@ -7,6 +7,13 @@ class GildedRose {
         this.items = items;
     }
 
+    private void degradeQuality(Item item) {
+        item.quality = item.quality - 1;
+        if (item.name.equals("Conjured Mana Cake")) {
+            item.quality = item.quality - 1;
+        }
+    }
+
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (items[i].name.equals("Aged Brie")
@@ -45,10 +52,10 @@ class GildedRose {
                 }
 
             } else {
-                items[i].quality = items[i].quality - 1;
+                degradeQuality(items[i]);
                 items[i].sellIn = items[i].sellIn - 1;
                 if (items[i].sellIn < 0) {
-                    items[i].quality = items[i].quality - 1;
+                    degradeQuality(items[i]);
                 }
             }
         }
